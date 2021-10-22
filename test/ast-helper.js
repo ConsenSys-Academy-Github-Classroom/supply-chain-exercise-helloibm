@@ -12,13 +12,15 @@ const items = (ca) => {
 
   return item
     .members
-    .map((t) => ({
-      name: t.name,
-      nodeType: t.nodeType,
-      stateVariable: t.stateVariable,
-      type: t.typeName.name,
-      mutability: t.typeName.stateMutability,
-    }));
+    .map((t) => {
+      return {
+        name: t.name,
+        nodeType: t.nodeType,
+        stateVariable: t.stateVariable,
+        type: t.typeName.nodeType == 'UserDefinedTypeName' ? t.typeName.pathNode.name : t.typeName.name,
+        mutability: t.typeName.stateMutability,
+      }      
+    });
 };
 
 const isDefined = members => variableName => {

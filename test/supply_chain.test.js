@@ -19,6 +19,7 @@ contract("SupplyChain", function (accounts) {
 
   describe("Variables", () => {
     it("should have an owner", async () => {
+      console.log(" ---- " + typeof instance.owner);
       assert.equal(typeof instance.owner, 'function', "the contract has no owner");
     });
 
@@ -109,7 +110,7 @@ contract("SupplyChain", function (accounts) {
         );
       });
 
-      it("should have a `state`", () => {
+      it.only("should have a `state`", () => {
         assert(
           isDefined(subjectStruct)("state"), 
           "Struct Item should have a `state` member"
@@ -118,6 +119,7 @@ contract("SupplyChain", function (accounts) {
           isType(subjectStruct)("state")("State"), 
           "`state` should be of type `State`"
         );
+        console.log(subjectStruct)
       });
 
       it("should have a `seller`", () => {
